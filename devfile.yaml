@@ -1,0 +1,24 @@
+schemaVersion: 2.2.2
+metadata:
+  name: php-hello-world
+projects:
+  - name: php-hello-world
+    zip:
+      location: http://devspaces-dashboard.openshift-devspaces.svc:8080/dashboard/api/airgap-sample/project/download?id=php
+components:
+  - name: tools
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel9@sha256:f7325ee7259a0585e8017d4442d778a37f4c8a67d81fe70c241a014001e37539
+      memoryLimit: 2Gi
+      memoryRequest: 1Gi
+      cpuLimit: '1'
+      cpuRequest: '0.5'
+commands:
+  - id: run
+    exec:
+      label: Run the application
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/php-hello-world
+      commandLine: php hello-world.php
+      group:
+        kind: run
