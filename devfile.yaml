@@ -3,8 +3,9 @@ metadata:
   name: php-hello-world
 projects:
   - name: php-hello-world
-    zip:
-      location: http://devspaces-dashboard.openshift-devspaces.svc:8080/dashboard/api/airgap-sample/project/download?id=php
+    git:
+      remotes:
+        origin: git@github.com:rludva/devspaces-sample-02.git
 components:
   - name: tools
     container:
@@ -18,6 +19,7 @@ commands:
     exec:
       label: Run the application
       component: tools
+      # Předpokládáme, že v tomto repozitáři je soubor s aplikací nazvaný hello-world.php
       workingDir: ${PROJECTS_ROOT}/php-hello-world
       commandLine: php hello-world.php
       group:
